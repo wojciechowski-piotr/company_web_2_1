@@ -1,0 +1,397 @@
+@import "reset.scss";
+@import "mixins.scss";
+@import "variables.scss";
+@import url("https://fonts.googleapis.com/css?family=Maven+Pro:400,500,700&subset=latin-ext");
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  overflow-y: scroll;
+}
+
+body {
+  font-family: $font-sans-serif;
+  font-size: $size-1;
+  font-weight: $regular-weight;
+  line-height: 1.4;
+  color: $secondary-text-color;
+  &.hide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: block;
+  }
+}
+section {
+  margin-bottom: 4rem;
+}
+.container {
+  max-width: 1140px;
+  padding: 0 20px;
+  margin: 0 auto;
+}
+
+h2 {
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+  font-weight: $bold-weight;
+  color: $primary-text-color;
+}
+h3 {
+  margin-bottom: 0.5rem;
+  font-weight: $medium-weight;
+  color: $primary-text-color;
+}
+
+a {
+  text-decoration: none;
+  color: $primary-text-color;
+  &:hover {
+    color: $secondary-text-color;
+  }
+}
+p {
+  margin-bottom: 0.5rem;
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+img {
+  width: 100%;
+}
+
+.btn {
+  display: inline-block;
+  background: transparent;
+  border: 1px solid $primary-text-color;
+  padding: 0.5rem 1.25rem;
+  margin-top: 1.5rem;
+  font-family: $font-sans-serif;
+  font-size: 1rem;
+  color: $primary-text-color;
+  font-weight: $medium-weight;
+  transition: 0.15s;
+  &:hover {
+    background-color: $primary-text-color;
+    color: $light-gray;
+  }
+}
+
+.hide {
+  display: none;
+}
+
+nav {
+  position: absolute;
+  width: 100%;
+  // background-color: rgba($primary-text-color, $alpha: 0.25);
+  background: transparent;
+  padding: 1rem 0;
+  .container {
+    display: flex;
+    .logo {
+      color: $light-gray;
+      font-weight: $medium-weight;
+      &.light {
+        color: $light-gray;
+        z-index: 1000;
+      }
+    }
+    .burger {
+      margin-left: auto;
+      a {
+        font-weight: $medium-weight;
+        color: $light-gray;
+      }
+    }
+    .nav-links {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      bottom: 0;
+      width: 100%;
+      background-color: $primary-text-color;
+      color: $light-gray;
+      transition: transform 0.25s;
+      overflow: auto;
+      &.show {
+        transform: translateX(-100%);
+      }
+      &__head {
+        display: flex;
+        margin-bottom: 2rem;
+        .logo {
+          @include screen("desktop") {
+            margin-left: 0;
+          }
+        }
+        .close-icon {
+          margin-left: auto;
+          a {
+            font-size: $size-1;
+          }
+          @include screen("desktop") {
+            margin-right: 0;
+          }
+        }
+      }
+      .container {
+        display: block;
+        margin-top: 1rem;
+        width: 100%;
+        padding-bottom: 2rem;
+        a {
+          color: $light-gray;
+        }
+        ul {
+          display: flex;
+          flex-flow: column;
+          justify-content: center;
+          li {
+            display: inline-block;
+            padding: 0.5rem;
+            font-size: $size-2;
+            font-weight: $medium-weight;
+            a {
+              font-size: 1.25rem;
+            }
+          }
+        }
+        .drop-sub-links {
+          &::after {
+            content: "\25b6";
+            font-size: $size-1;
+            margin-left: 0.5rem;
+            opacity: 0.25;
+          }
+        }
+        .sub-links {
+          display: none;
+          padding-left: 0.25rem;
+          margin-top: 0.25rem;
+          border-left: 2px solid $secondary-text-color;
+          &.show {
+            display: block;
+          }
+          li {
+            display: block;
+            padding: 0.5rem;
+            a {
+              font-size: $size-2;
+              font-weight: $regular-weight;
+            }
+          }
+        }
+      }
+      &__content {
+        display: grid;
+        &--kontakt {
+          display: none;
+          h2 {
+            color: $light-gray;
+          }
+          @include screen("desktop") {
+            display: block;
+          }
+          .about-short {
+            h3 {
+              color: $light-gray;
+              font-size: 1.5rem;
+            }
+          }
+          .kontakt-short {
+            margin-top: 2rem;
+            font-size: 1.5rem;
+            font-weight: $medium-weight;
+          }
+          .social-short {
+            display: flex;
+            margin-top: 2rem;
+            &__box {
+              margin-right: 2rem;
+              img {
+                width: 30px;
+              }
+            }
+          }
+        }
+        @include screen("desktop") {
+          grid-template-columns: 1fr 2fr;
+        }
+      }
+    }
+  }
+}
+h1 {
+  font-size: 2.5rem;
+  font-weight: $medium-weight;
+  color: $light-gray;
+  line-height: 1.2;
+  text-shadow: -2px 2px 0.75rem $primary-text-color;
+}
+.hero {
+  background: url('../img/head_bg.jpg') bottom left no-repeat;
+  background-size: cover;
+  @include screen("desktop") {
+    background-position: center;
+  }
+  .container {
+    height: 100vh;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-content: center;
+    .subtitle {
+      margin-top: 1rem;
+      font-size: 1.5rem;
+      font-weight: $regular-weight;
+      color: $light-gray;
+      text-shadow: -2px 2px 0.75rem $primary-text-color;
+    }
+    @include screen("tablet") {
+      height: 500px;
+    }
+  }
+}
+
+.offer-label {
+  background-color: $light-gray;
+  padding: 4rem 0;
+  text-align: center;
+  p {
+    font-size: 2rem;
+  }
+}
+
+.announcement {
+  .container {
+    text-align: center;
+    h2 {
+      text-align: left;
+    }
+    .box {
+      text-align: left;
+    }
+  }
+}
+
+.box-container {
+  display: grid;
+  grid-template-columns: auto;
+  grid-gap: 20px;
+  .box {
+    img {
+      margin-bottom: 1rem;
+    }
+  }
+  @include screen("tablet") {
+    grid-template-columns: repeat(3, auto);
+  }
+}
+
+footer {
+  background-color: $primary-text-color;
+  padding: 4rem 0 2rem;
+  color: $light-gray;
+  .container {
+    display: grid;
+    grid-template-areas: "address-info" "social-icon" "contact-form" "footer-text";
+    grid-template-columns: auto;
+    grid-gap: 20px;
+    @include screen("tablet") {
+      grid-template-areas:
+        "address-info contact-form"
+        "social-icon contact-form"
+        "footer-text footer-text";
+      grid-template-columns: repeat(2, 50%);
+    }
+    .address-info {
+      grid-area: address-info;
+      h2 {
+        color: $light-gray;
+      }
+    }
+    .social-icon {
+      grid-area: social-icon;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 2rem;
+      &__box {
+        padding: 1rem;
+        a {
+          img {
+            width: 25px;
+            opacity: 0.75;
+          }
+          &:hover {
+            img {
+              opacity: 1;
+            }
+          }
+        }
+      }
+      @include screen("tablet") {
+        justify-content: flex-start;
+        padding: 0;
+      }
+    }
+    .contact-form {
+      grid-area: contact-form;
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding: 0;
+      @include screen("tablet") {
+        padding: inherit;
+      }
+      form {
+        width: 100%;
+        label {
+          display: block;
+          margin: 1rem 0 0.5rem;
+          font-weight: $medium-weight;
+        }
+        input,
+        textarea {
+          width: 100%;
+          padding: 0.75rem;
+          background-color: rgba($gray, 0.05);
+          border: none;
+          border-bottom: 2px solid $gray;
+          font-family: $font-sans-serif;
+          color: $light-gray;
+          resize: none;
+          &::placeholder {
+            color: $light-gray;
+          }
+        }
+        textarea {
+          height: 150px;
+        }
+      }
+      .btn {
+        border: 1px solid $light-gray;
+        color: $light-gray;
+        margin: 0 auto;
+        margin-top: 1.5rem;
+        &:hover {
+          background-color: $light-gray;
+          color: $primary-text-color;
+        }
+      }
+    }
+    .footer-text {
+      grid-area: footer-text;
+      margin-top: 1rem;
+      font-size: $size-2;
+      text-align: center;
+    }
+  }
+}
